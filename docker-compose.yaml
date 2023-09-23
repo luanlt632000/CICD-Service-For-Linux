@@ -1,0 +1,10 @@
+version: '3'
+services:
+  giteahook:
+    build: .
+    container_name: giteahook
+    volumes:
+    - ".:/data"
+    tty: true
+    ports:
+    - '7777:8000'

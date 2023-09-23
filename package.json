@@ -1,0 +1,21 @@
+{
+  "name": "gitea_cicd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitea.nswteam.net/joseph/gitea_CICD.git"
+  },
+  "author": "Joseph Le",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
