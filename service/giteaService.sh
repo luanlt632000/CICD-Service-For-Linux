@@ -29,5 +29,5 @@ if [ -f "$indexjs_path" ]; then
   cd "$project_path" &&
   node "$indexjs_path"
 else
-  echo "Tệp $indexjs_path không tồn tại."
+  echo "Tệp $indexjs_path không ton tại."
 fi

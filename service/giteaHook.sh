@@ -22,12 +22,12 @@ result=$(expect -c '
   spawn git pull
   expect {
     "Username for *" {
-      send "joseph.le@apactech.io\n"
+      send "$GIT_USERNAME\n"
       exp_continue
     }
     "Password for *" {
       sleep 2
-      send "Maypjtkh0ng\r\r"
+      send "$GIT_PASSWORD\r\r"
       exp_continue
     }
     eof
@@ -55,7 +55,7 @@ if [[ $result == *$fe_path* ]]; then
     echo "|-------------|"
 
     npm run build &&
-    cp -rf $project/$fe_path/build/* /var/www/html
+    cp -rf $project/$fe_path/build/* $FE_ROOT_FOLDER
 fi
 
 echo "|----------------------|"

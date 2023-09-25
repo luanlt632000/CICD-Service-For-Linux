@@ -6,7 +6,13 @@ HOOK_PATH=/home/gitea_CICD
 #Duong dan cac thu muc trong project chinh
 #Co the khai bao nhieu bien hon de cau hinh giteaHook.sh
 
+GIT_USERNAME=joseph.le@apactech.io
+GIT_PASSWORD=Maypjtkh0ng
+
+#
 PROJECT_PATH=/home/Log_service
 FE_PROJECT_PATH=manage-view/
 BE_PROJECT_PATH=/home/Log_service
 
+#
+FE_ROOT_FOLDER=/var/www/html
