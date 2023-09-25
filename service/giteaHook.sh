@@ -1,10 +1,13 @@
 #!/bin/bash
 
+#File chua bien moi truong
+source /home/gitea_CICD/service/giteaService
+
 #URL project
-project="/home/Log_service"
+project=$PROJECT_PATH
 
 #URL folder FE
-fe_path="manage-view/"
+fe_path=$FE_PROJECT_PATH
 
 #URL folder BE
 #be_path="netmiko_Api/"

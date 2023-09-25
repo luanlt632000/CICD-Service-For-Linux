@@ -1,0 +1,11 @@
+[Unit]
+Description=Gitea Hook Service
+After=network.target
+
+[Service]
+ExecStart=/home/gitea_CICD/service/giteaService.sh
+Restart=always
+WorkingDirectory=/home/gitea_CICD/service
+User=root
+Group=root
+EnvironmentFile=/home/gitea_CICD/service/giteaService

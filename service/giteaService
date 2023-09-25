@@ -1,0 +1,12 @@
+#Duong dan thu muc, index.js file de chay dich vu giteaHook
+
+INDEXJS_HOOK_PATH=/home/gitea_CICD/index.js
+HOOK_PATH=/home/gitea_CICD
+
+#Duong dan cac thu muc trong project chinh
+#Co the khai bao nhieu bien hon de cau hinh giteaHook.sh
+
+PROJECT_PATH=/home/Log_service
+FE_PROJECT_PATH=manage-view/
+BE_PROJECT_PATH=/home/Log_service
+
