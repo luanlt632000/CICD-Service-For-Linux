@@ -16,23 +16,27 @@ if [ -d "/etc/systemd/system" ]; then
   
   sudo sed -i "s#ExecStart=.*#ExecStart=$escaped_pwd_install/service/giteaService.sh#" $pwd_install/service/giteaHook.service &&
   echo "* ExecStart *" &&
-  sleep 3 && 
+  sleep 2 && 
 
   sudo sed -i "s#WorkingDirectory=.*#WorkingDirectory=$escaped_pwd_install/service#" $pwd_install/service/giteaHook.service &&
   echo "* WorkingDirectory *" &&
-  sleep 3 &&
+  sleep 2 &&
 
   sudo sed -i "s#EnvironmentFile=.*#EnvironmentFile=$escaped_pwd_install/service/giteaService#" $pwd_install/service/giteaHook.service &&
   echo "* EnvironmentFile *" &&
-  sleep 3 &&
+  sleep 2 &&
 
   sudo sed -i "s#INDEXJS_HOOK_PATH=.*#INDEXJS_HOOK_PATH=$escaped_pwd_install#" $pwd_install/service/giteaService &&
   echo "* INDEXJS_HOOK_PATH *" &&
-  sleep 3 &&
+  sleep 2 &&
 
   sudo sed -i "s#HOOK_PATH=.*#HOOK_PATH=$escaped_pwd_install#" $pwd_install/service/giteaService &&
   echo "* HOOK_PATH *" &&
-  sleep 3 &&
+  sleep 2 &&
+
+  sudo sed -i "s#source .*#source $escaped_pwd_install/service/giteaService#" $pwd_install/service/giteaHook.sh &&
+  echo "* EXEC_FILE *" &&
+  sleep 2 &&
 
   systemctl stop giteaHook.service 
   
