@@ -15,6 +15,12 @@ if [ -d "/etc/systemd/system" ]; then
   echo "|------------|"
   echo "|*** DONE ***|"
   echo "|------------|"
+  
+  echo "|--------------|"
+  echo "|** GOODLUCK **|"
+  echo "|--------------|"
+
+  journalctl -u giteaHook -f
 
 else
   echo "/etc/systemd/system directory does not exist. Please check!"
