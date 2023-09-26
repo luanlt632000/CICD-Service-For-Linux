@@ -1,7 +1,7 @@
 #Duong dan thu muc, index.js file de chay dich vu giteaHook
 
-INDEXJS_HOOK_PATH=/home/gitea_CICD/index.js
-HOOK_PATH=/home/gitea_CICD
+INDEXJS_HOOK_PATH=/home/joseph/gitea_CICD
+HOOK_PATH=/home/joseph/gitea_CICD
 
 #Duong dan cac thu muc trong project chinh
 #Co the khai bao nhieu bien hon de cau hinh giteaHook.sh
