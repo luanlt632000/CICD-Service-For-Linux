@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #File chua bien moi truong
-source /home/joseph/gitea_CICD/service/giteaService
+source /home/joseph/abc/gitea_CICD/service/giteaService
 
 #URL project
 project=$PROJECT_PATH
@@ -20,11 +20,15 @@ username=$GIT_USERNAME
 
 #Password git
 password=$GIT_PASSWORD
+
+#Git branch
+branch=$GIT_BRANCH
+
 cd $project
 
 result=$(expect -c "
   set timeout 10
-  spawn git pull
+  spawn git pull origin \$branch
   expect {
     \"Username for *\" {
       send \"$username\r\"
