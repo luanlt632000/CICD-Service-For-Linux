@@ -9,6 +9,11 @@ GIT_USERNAME=joseph.le@apactech.io
 GIT_PASSWORD=Maypjtkh0ng
 GIT_BRANCH=dev
 
+#Email
+EMAIL_ADDRESS=joseph@apactech.io
+#Send mail: True or False
+SEND_EMAIL=False 
+
 #Duong dan goc cua project (*)
 PROJECT_PATH=/home/joseph/Demo_Git_Webhook
 
