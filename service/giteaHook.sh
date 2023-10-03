@@ -28,7 +28,7 @@ cd $project
 
 result=$(expect -c "
   set timeout 10
-  spawn git pull origin \$branch
+  spawn git pull origin $GIT_BRANCH
   expect {
     \"Username for *\" {
       send \"$username\r\"
