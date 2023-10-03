@@ -1,23 +1,53 @@
-const express = require("express");
-const app = express();
-const { exec } = require("child_process");
+ const express = require("express");
+ const app = express();
+ const { exec } = require("child_process");
+ const nodeMailer = require("nodemailer");
+ 
+ app.use(express.json());
+ 
+ app.post("/git/gitea-webhook", (req, res) => {
 
-app.post("/git/gitea-webhook", (req, res) => {
-    exec(
-       "./service/giteaHook.sh",
-       (error, stdout, stderr) => {
-         if (error) {
-           console.log(`Error executing command: ${error}`);
-           res.status(500).send("PULL ERROR")
-         }
-         res.status(200).send({mess: "PULL SUCCESS!", data: stdout})
-         console.log(`Command output:\n${stdout}`);
-       }
-     );
-  console.log("PULL2 EE333!!");
-});
-
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log("Server is running on port ", PORT);
-});
+     const giteaEvent = req.headers["x-gitea-event"];
+     console.log("New event: "+giteaEvent)
+     const body = req.body
+//     console.log(body)
+     res.status(200).send({mess: "The event has been received!", data:req.body})
+     
+     exec(
+        "./service/giteaHook.sh",
+        (error, stdout, stderr) => {
+          if (error) {
+            console.log(`Error executing command: ${error}`);
+//            res.status(500).send("PULL ERROR")
+          }
+           console.log(stdout)
+           const transporter = nodeMailer.createTransport({
+           
+                 pool: true,
+                 host: "mail.ipsupply.com.au",
+                 port: 465,
+                 secure: true,
+                 auth: {
+                   user: "admin@apactech.io",
+                   pass: "BGK!dyt6upd2eax1bhz",
+                 },
+               });
+               
+               const options = {
+                 from: "admin@apactech.io",
+                 to: "joseph@apactech.io",
+                 subject: "New Git envent: "+giteaEvent ,
+                 html: "<h1>*** "+giteaEvent+" event ***</h1><h4>Committer: "+req.body.commits[0]?.committer.name+"</h4><h4>Message: "+req.body.commits[0]?.message+"</h4><a href='"+req.body.commits[0]?.url+"'>Link: "+req.body.commits[0]?.url+"</a><h4>Process output:</h4><textarea style='wordWrap:break-word; display: block; width:100%; height:70vh;border:solid 2px orange'>" +
+            stdout +
+            "</textarea>"
+               };
+               
+               return transporter.sendMail(options);
+        });
+    
+ });
+ 
+ const PORT = 5000;
+ app.listen(PORT, () => {
+   console.log("Server is running on port ", PORT);
+ });

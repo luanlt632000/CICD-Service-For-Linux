@@ -1,42 +1,47 @@
 #!/bin/bash
 
 #File chua bien moi truong
-source /home/joseph/abc/gitea_CICD/service/giteaService
+source /home/joseph/gitea_CICD/service/giteaService
 
 #URL project
 project=$PROJECT_PATH
 
 #URL folder FE
-fe_path=$FE_PROJECT_PATH
+fe_path=$(basename "$FE_PROJECT_PATH")
 
 #URL folder BE
-#be_path="netmiko_Api/"
+be_path=$BE_PROJECT_PATH
 
 #URL other folder
 #other="..."
 
+#Username git
+username=$GIT_USERNAME
+
+#Password git
+password=$GIT_PASSWORD
 cd $project
 
-result=$(expect -c '
+result=$(expect -c "
   set timeout 10
   spawn git pull
   expect {
-    "Username for *" {
-      send "$GIT_USERNAME\n"
+    \"Username for *\" {
+      send \"$username\r\"
       exp_continue
     }
-    "Password for *" {
+    \"Password for *\" {
       sleep 2
-      send "$GIT_PASSWORD\r\r"
+      send \"$password\r\r\"
       exp_continue
     }
     eof
   }
   catch wait result
-  exit [lindex $result 3]
-')
+  exit [lindex \$result 3]
+") &&
 
-echo "$result"
+echo "$result" &&
 
 if [[ $result == *$fe_path* ]]; then
     echo "|--------------------------------------------------------|"
@@ -55,14 +60,14 @@ if [[ $result == *$fe_path* ]]; then
     echo "|-------------|"
 
     npm run build &&
-    cp -rf $project/$fe_path/build/* $FE_ROOT_FOLDER
+    cp -rf $project/$fe_path/build/* $FE_ROOT_FOLDER_PATH
 fi
 
 echo "|----------------------|"
 echo "|*** UPDATE LIBRARY ***|"
 echo "|----------------------|"
 
-    cd $project &&
+    cd $be_path &&
     npm install 
     sleep 10
 
