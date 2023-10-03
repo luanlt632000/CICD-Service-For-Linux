@@ -3,7 +3,8 @@
 
 #Duong dan thu muc, index.js file de chay dich vu giteaHook (cac bien do he thong tu dong cap nhat)
 HOOK_PATH=/home/joseph/gitea_CICD
-
+#Duong dan thu muc, index.js file de chay dich vu giteaHook (cac bien do he thong tu dong cap nhat)
+HOOK_PATH=/home/joseph/gitea_CICD
 #Tai khoan git (*)
 GIT_USERNAME=joseph.le@apactech.io
 GIT_PASSWORD=Maypjtkh0ng
