@@ -38,7 +38,7 @@
         ./install.sh
     ```
 
-![install](https://ibb.co/rFbLqvP)
+![install](https://i.ibb.co/VJHhb3y/install-Service.png)
 #### ** Note: ** 
 
 - Project gitea_CICD should be placed at the same folder level as your project
