@@ -1,5 +1,5 @@
 # gitea_CICD
-<div style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Project Screenshot" width="300"></div>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Project Screenshot" width="300"></div>
 
 ### 1) Clone project to your server
   ```sh
