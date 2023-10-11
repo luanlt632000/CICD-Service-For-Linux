@@ -1,0 +1,13 @@
+[Unit]
+Description=Gitea Hook Service
+After=network.target
+
+[Service]
+ExecStart=/home/gitea_CICD/service_temp/giteaService.sh
+Restart=always
+WorkingDirectory=/home/gitea_CICD/service_temp
+Restart=on-failure
+EnvironmentFile=/home/gitea_CICD/service_temp/giteaService.conf
+
+[Install]
+WantedBy=multi-user.target

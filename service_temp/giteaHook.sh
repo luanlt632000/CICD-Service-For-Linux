@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #File chua bien moi truong
-source /home/gitea_CICD/service/giteaService.conf
+source /home/gitea_CICD/service_temp/giteaService.conf
 
 #URL project
 project=$PROJECT_PATH
