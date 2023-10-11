@@ -1,5 +1,6 @@
 # gitea_CICD
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Project Screenshot" width="300">
+<div style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Project Screenshot" width="300"></div>
+
 ### 1) Clone project to your server
   ```sh
     git clone https://gitea.nswteam.net/joseph/gitea_CICD.git
