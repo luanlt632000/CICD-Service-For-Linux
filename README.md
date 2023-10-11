@@ -1,5 +1,5 @@
 # gitea_CICD
-<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Project Screenshot" width="300"></div>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="NodeJS" width="300"></div>
 
 ### 1) Clone project to your server
   ```sh
@@ -37,8 +37,8 @@
      ```sh
         ./install.sh
     ```
+<div align="center"><img src="https://i.ibb.co/VJHhb3y/install-Service.png" alt="install server" width="600"></div>
 
-![install](https://i.ibb.co/VJHhb3y/install-Service.png)
 #### ** Note: ** 
 
 - Project gitea_CICD should be placed at the same folder level as your project
@@ -49,5 +49,9 @@
 
 - Depending on the technology your project uses, the "gitea_CICD/service/giteaHook.sh" file will be custom configured to match the technology.
 
- **____ Joseph ____ **
+
+
+
+
+<div align="center"><h3>**____ Joseph Le____ **</h3></div>
 
