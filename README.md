@@ -44,10 +44,9 @@ root@root#
 ### 6) Run file "install.sh" to install service
 
 root@root#
-
-    ```sh
-        ./install.sh
-    ```
+  ```sh
+      ./install.sh
+  ```
 
 <div align="center"><img src="https://i.ibb.co/VJHhb3y/install-Service.png" alt="install server" width="600"></div>
 
