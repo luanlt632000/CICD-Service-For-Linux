@@ -1,57 +1,78 @@
 # gitea_CICD
+
 <div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="NodeJS" width="300"></div>
 
 ### 1) Clone project to your server
-  ```sh
-    git clone https://gitea.nswteam.net/joseph/gitea_CICD.git
-  ```
+
+```sh
+  git clone https://gitea.nswteam.net/joseph/gitea_CICD.git
+```
+
 ### 2) Access the folder you just cloned
-* root@root#
-    ```sh
-        cd gitea_CICD
-    ```
+
+- root@root#
+  ```sh
+      cd gitea_CICD
+  ```
+
 ### 3) Check the directory path
-* root@root#
-    ```sh
-        pwd
-    ```
-* output: <path>/gitea_CICD
 
-### 4) Fill in environment variables (*)
-* root@root#
-    ```sh
-        nano service/giteaService
-    ```
-	* GIT_USERNAME: Username of the git account.
-	* GIT_PASSWORD: Password of the git account.
-	* GIT_BRANCH: The git branch is needed for the server.
-	* EMAIL_ADDRESS: Your email address.
-	* SEND_EMAIL: Turn on/off email sending feature.
-	* PROJECT_PATH: Root path of your project.
-	* FE_PROJECT_PATH: Path of the front-end folder.
-	* BE_PROJECT_PATH: Path of the back-end folder.
-	* FE_ROOT_FOLDER: Path of folder front-end public.
+- root@root#
+  ```sh
+      pwd
+  ```
+- output: <path>/gitea_CICD
 
-### 5) Run file "install.sh" to install service
-* root@root#
-     ```sh
+### 4) Create folder service_run
+
+- root@root#
+
+  `````sh
+      mkdir service_run
+  ```
+
+  ````sh
+      cp service/giteaService.conf service_run/giteaService.conf
+  ```
+  `````
+
+### 5) Fill in environment variables (\*)
+
+- root@root#
+  ```sh
+      nano service/giteaService
+  ```
+  - GIT_USERNAME: Username of the git account.
+  - GIT_PASSWORD: Password of the git account.
+  - GIT_BRANCH: The git branch is needed for the server.
+  - EMAIL_ADDRESS: Your email address.
+  - SEND_EMAIL: Turn on/off email sending feature.
+  - PROJECT_PATH: Root path of your project.
+  - FE_PROJECT_PATH: Path of the front-end folder.
+  - BE_PROJECT_PATH: Path of the back-end folder.
+  - FE_ROOT_FOLDER: Path of folder front-end public.
+
+### 6) Run file "install.sh" to install service
+
+- root@root#
+`sh
         ./install.sh
-    ```
+    `
 <div align="center"><img src="https://i.ibb.co/VJHhb3y/install-Service.png" alt="install server" width="600"></div>
 
-#### ** Note: ** 
+#### ** Note: **
 
 - Project gitea_CICD should be placed at the same folder level as your project
-    ```
-        ├── your_project
-        └── gitea_CICD project
-    ```
+
+  ```
+      ├── your_project
+      └── gitea_CICD project
+  ```
 
 - Depending on the technology your project uses, the "gitea_CICD/service/giteaHook.sh" file will be custom configured to match the technology.
 
-
-
-
-
 <div align="center"><h4><i>**____ Joseph Le____ **</i></h4></div>
 
+```
+
+```
