@@ -14,7 +14,7 @@ if [ -d "/etc/systemd/system" ]; then
     echo "|------------------------------|"
     echo ""
 
-    cp -rf service/* service_run &&
+    find $pwd_install/service -type f -not -name "giteaService.conf" -exec cp {} $pwd_install/service_run \;
     
     sleep 2 &&
     sudo sed -i "s#ExecStart=.*#ExecStart=$escaped_pwd_install/service_run/giteaService.sh#" $pwd_install/service_run/giteaHook.service &&

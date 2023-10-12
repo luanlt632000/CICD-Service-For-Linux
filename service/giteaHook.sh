@@ -81,7 +81,7 @@ echo "|----------------------|"
 echo "|*** UPDATE LIBRARY ***|"
 echo "|----------------------|"
 
-input_file="$HOOK_PATH/service_temp/giteaService.conf" &&
+input_file="$HOOK_PATH/service_run/giteaService.conf" &&
 
   # Doc va xu ly tung dong
   while IFS= read -r line; do
