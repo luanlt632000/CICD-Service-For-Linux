@@ -30,7 +30,7 @@ root@root#
   ```sh
       mkdir service_run
   ```
-
+Copy environment file 
   ```sh
       cp service/giteaService.conf service_run/giteaService.conf
   ```
@@ -39,14 +39,16 @@ root@root#
 
 root@root#
   ```sh
-      service_run/giteaService.conf
+      nano service_run/giteaService.conf
   ```
 ### 6) Run file "install.sh" to install service
 
 root@root#
+
     ```sh
         ./install.sh
     ```
+
 <div align="center"><img src="https://i.ibb.co/VJHhb3y/install-Service.png" alt="install server" width="600"></div>
 
 #### ** Note: **
