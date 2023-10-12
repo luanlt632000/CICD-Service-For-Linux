@@ -14,28 +14,28 @@ if [ -d "/etc/systemd/system" ]; then
     echo "|------------------------------|"
     echo ""
 
-    cp -rf service service_temp &&
+    cp -rf service/* service_run &&
     
     sleep 2 &&
-    sudo sed -i "s#ExecStart=.*#ExecStart=$escaped_pwd_install/service_temp/giteaService.sh#" $pwd_install/service_temp/giteaHook.service &&
+    sudo sed -i "s#ExecStart=.*#ExecStart=$escaped_pwd_install/service_run/giteaService.sh#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mExecStart\e[0m *" &&
     sleep 1 &&
-    sudo sed -i "s#WorkingDirectory=.*#WorkingDirectory=$escaped_pwd_install/service_temp#" $pwd_install/service_temp/giteaHook.service &&
+    sudo sed -i "s#WorkingDirectory=.*#WorkingDirectory=$escaped_pwd_install/service_run#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mWorkingDirectory\e[0m *" &&
     sleep 1 &&
-    sudo sed -i "s#EnvironmentFile=.*#EnvironmentFile=$escaped_pwd_install/service_temp/giteaService.conf#" $pwd_install/service_temp/giteaHook.service &&
+    sudo sed -i "s#EnvironmentFile=.*#EnvironmentFile=$escaped_pwd_install/service_run/giteaService.conf#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mEnvironmentFile\e[0m *" &&
     sleep 1 &&
-    sudo sed -i "s#HOOK_PATH=.*#HOOK_PATH=$escaped_pwd_install#" $pwd_install/service_temp/giteaService.conf &&
+    sudo sed -i "s#HOOK_PATH=.*#HOOK_PATH=$escaped_pwd_install#" $pwd_install/service_run/giteaService.conf &&
     echo -e "* \e[32mHOOK_PATH\e[0m *" &&
     sleep 1 &&
-    sudo sed -i "s#source .*#source $escaped_pwd_install/service_temp/giteaService.conf#" $pwd_install/service_temp/giteaHook.sh &&
+    sudo sed -i "s#source .*#source $escaped_pwd_install/service_run/giteaService.conf#" $pwd_install/service_run/giteaHook.sh &&
     echo -e "* \e[32mEXEC_FILE\e[0m *" &&
     echo ""
     sleep 1 &&
     systemctl stop giteaHook.service
     
-    input_file="$pwd_install/service_temp/giteaService.conf" &&
+    input_file="$pwd_install/service_run/giteaService.conf" &&
     
     #Doc va xu ly tung dong
     while IFS= read -r line; do
@@ -57,7 +57,7 @@ if [ -d "/etc/systemd/system" ]; then
             fi
         fi
     done <"$input_file" &&
-    cp $pwd_install/service_temp/giteaHook.service /etc/systemd/system/giteaHook.service &&
+    cp $pwd_install/service_run/giteaHook.service /etc/systemd/system/giteaHook.service &&
     echo "" &&
     echo -e "* \e[32mCopy service file\e[0m *" &&
     systemctl daemon-reload &&

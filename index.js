@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.post("/git/gitea-webhook", async (req, res) => {
   const contentFile = await fs.readFileSync(
-    "./service_temp/giteaService.conf",
+    "./service_run/giteaService.conf",
     "utf8"
   );
   const checkSendMail = contentFile
@@ -29,7 +29,7 @@ app.post("/git/gitea-webhook", async (req, res) => {
     .status(200)
     .send({ mess: "The event has been received!", data: req.body });
 
-  exec("./service_temp/giteaHook.sh", (error, stdout, stderr) => {
+  exec("./service_run/giteaHook.sh", (error, stdout, stderr) => {
     if (error) {
       console.log(`Error executing command: ${error}`);
       //            res.status(500).send("PULL ERROR")
