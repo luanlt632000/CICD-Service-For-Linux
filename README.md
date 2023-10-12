@@ -10,14 +10,14 @@
 
 ### 2) Access the folder you just cloned
 
-- root@root#
+root@root#
   ```sh
       cd gitea_CICD
   ```
 
 ### 3) Check the directory path
 
-- root@root#
+root@root#
   ```sh
       pwd
   ```
@@ -25,39 +25,28 @@
 
 ### 4) Create folder service_run
 
-- root@root#
+root@root#
 
-  `````sh
+  ```sh
       mkdir service_run
   ```
 
-  ````sh
+  ```sh
       cp service/giteaService.conf service_run/giteaService.conf
   ```
-  `````
 
 ### 5) Fill in environment variables (\*)
 
-- root@root#
+root@root#
   ```sh
-      nano service/giteaService
+      service_run/giteaService.conf
   ```
-  - GIT_USERNAME: Username of the git account.
-  - GIT_PASSWORD: Password of the git account.
-  - GIT_BRANCH: The git branch is needed for the server.
-  - EMAIL_ADDRESS: Your email address.
-  - SEND_EMAIL: Turn on/off email sending feature.
-  - PROJECT_PATH: Root path of your project.
-  - FE_PROJECT_PATH: Path of the front-end folder.
-  - BE_PROJECT_PATH: Path of the back-end folder.
-  - FE_ROOT_FOLDER: Path of folder front-end public.
-
 ### 6) Run file "install.sh" to install service
 
-- root@root#
-`sh
+root@root#
+    ```sh
         ./install.sh
-    `
+    ```
 <div align="center"><img src="https://i.ibb.co/VJHhb3y/install-Service.png" alt="install server" width="600"></div>
 
 #### ** Note: **
@@ -72,7 +61,3 @@
 - Depending on the technology your project uses, the "gitea_CICD/service/giteaHook.sh" file will be custom configured to match the technology.
 
 <div align="center"><h4><i>**____ Joseph Le____ **</i></h4></div>
-
-```
-
-```
