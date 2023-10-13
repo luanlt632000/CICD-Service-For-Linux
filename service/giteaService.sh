@@ -1,5 +1,6 @@
 #!/bin/bash
 source /home/phuc/gitea_CICD/service_run/giteaService.conf
+export HOME=$PROJECT_PATH
 # Đường dẫn tới tệp index.js
 indexjs_path=$HOOK_PATH/index.js
 project_path=$HOOK_PATH
@@ -9,13 +10,13 @@ PASSWORD=$(echo "$GIT_PASSWORD" | sed 's/@/%40/g')
 
 REPOSITORY_AUTH="https://$USERNAME:$PASSWORD@$(echo $GIT_REPOSITORY | sed 's#https://##')"
 
-echo "$REPOSITORY_AUTH"
-
 cd "$PROJECT_PATH" &&
-git config --global --add safe.directory $PROJECT_PATH &&
+
+git config --global --add safe.directory $HOME &&
+
 SET_ORIGIN=$(git remote set-url origin $REPOSITORY_AUTH) &&
  
-# Kiểm tra xem Node.js đã cài đặt chưa
+# Ki?m tra xem Node.js đ? cài đ?t chưa
 if ! command -v node &> /dev/null; then
     echo -e "\e[31mNode.js is not installed.\e[0m"
     echo -e "\e[32mInstall Node.js...\e[0m"
@@ -27,7 +28,7 @@ else
     node -v
 fi
 
-# Kiểm tra xem npm đã cài đặt chưa
+# Ki?m tra xem npm đ? cài đ?t chưa
 if ! command -v npm &> /dev/null; then
     echo -e "\e[31mnpm is not installed. Install npm...\e[0m"
     sudo apt-get install npm -y
@@ -46,7 +47,7 @@ else
     exit 1
 fi
 
-# Kiểm tra xem tệp index.js có tồn tại không
+# Ki?m tra xem t?p index.js có t?n t?i không
 if [ -f "$indexjs_path" ]; then
     echo "Run file $indexjs_path..."
     cd "$project_path" &&

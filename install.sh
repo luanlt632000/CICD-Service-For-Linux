@@ -5,7 +5,6 @@ if [ -d "/etc/systemd/system" ]; then
     echo -e "|***** \e[33mINSTALL SERVICE\e[0m *****|"
     echo "|---------------------------|"
     
-    sleep 2 &&
     pwd_install=$(pwd) &&
     escaped_pwd_install=$(printf '%s\n' "$pwd_install" | sed -e 's/[\/&]/\\&/g') &&
     echo ""
@@ -15,29 +14,22 @@ if [ -d "/etc/systemd/system" ]; then
     echo ""
     
     find $pwd_install/service -type f -not -name "giteaService.conf" -exec cp {} $pwd_install/service_run \;
-    
-    sleep 2 &&
 
     sudo sed -i "s#ExecStart=.*#ExecStart=$escaped_pwd_install/service_run/giteaService.sh#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mExecStart\e[0m *" &&
-    sleep 1 &&
 
     sudo sed -i "s#WorkingDirectory=.*#WorkingDirectory=$escaped_pwd_install/service_run#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mWorkingDirectory\e[0m *" &&
-    sleep 1 &&
 
     sudo sed -i "s#EnvironmentFile=.*#EnvironmentFile=$escaped_pwd_install/service_run/giteaService.conf#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mEnvironmentFile\e[0m *" &&
-    sleep 1 &&
 
     sudo sed -i "s#HOOK_PATH=.*#HOOK_PATH=$escaped_pwd_install#" $pwd_install/service_run/giteaService.conf &&
     echo -e "* \e[32mHOOK_PATH\e[0m *" &&
-    sleep 1 &&
 
     sudo sed -i "s#source .*#source $escaped_pwd_install/service_run/giteaService.conf#" $pwd_install/service_run/giteaHook.sh &&
     echo -e "* \e[32mEXEC_FILE\e[0m *" &&
     echo ""
-    sleep 1 &&
 
     sudo sed -i "s#source .*#source $escaped_pwd_install/service_run/giteaService.conf#" $pwd_install/service_run/giteaService.sh &&
 
@@ -78,13 +70,11 @@ if [ -d "/etc/systemd/system" ]; then
     echo "|----------------------|" &&
     echo "" &&
     systemctl enable giteaHook &&
-    sleep 2 &&
     echo "|---------------------|" &&
     echo -e "|*** \e[33mSTART SERVICE\e[0m ***|" &&
     echo "|---------------------|" &&
     echo "" &&
     systemctl start giteaHook &&
-    sleep 2 &&
     echo "|------------|" &&
     echo -e "|*** \e[33mDONE\e[0m ***|" &&
     echo "|------------|" &&

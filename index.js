@@ -16,6 +16,7 @@ const PORT = contentFile
 app.use(express.json());
 
 app.post("/git/gitea-webhook", async (req, res) => {
+console.log("AAAAAAAAAAAAAAAA")
   const checkSendMail = contentFile
     .split("\n")
     .filter((i) => i.includes("SEND_EMAIL"))[0]
