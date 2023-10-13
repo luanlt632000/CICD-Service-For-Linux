@@ -56,19 +56,6 @@ if [ -d "/etc/systemd/system" ]; then
                 echo -e "\e[32mOK: $path exists\e[0m"
                 sleep 1
             fi
-        else
-            if [[ $line == *"REPOSITORY"* ]]; then
-                path="${line#*=}"
-                if git ls-remote -q --exit-code "$path" > /dev/null; then
-                    echo -e "\e[32mOK: Repository $path exists\e[0m"
-                    sleep 1
-                else
-                    echo ""
-                    echo -e "\e[41mError: Repository $path not exists.\e[0m"
-                    echo ""
-                    exit 1
-                fi
-            fi
         fi
     done <"$input_file" &&
 
