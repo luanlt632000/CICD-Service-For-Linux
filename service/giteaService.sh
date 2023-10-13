@@ -3,7 +3,8 @@
 # Đường dẫn tới tệp index.js
 indexjs_path=$HOOK_PATH/index.js
 project_path=$HOOK_PATH
-REPOSITORY_AUTH="https://$GIT_USERNAME:$GIT_PASSWORD@$(echo $GIT_REPOSITORY | sed 's#https://##')"
+PASSWORD=$(echo "$GIT_PASSWORD" | sed 's/@/%40/g')
+REPOSITORY_AUTH="https://$GIT_USERNAME:$PASSWORD@$(echo $GIT_REPOSITORY | sed 's#https://##')"
 
 cd "$PROJECT_PATH" &&
 SET_ORIGIN=$(git remote set-url origin $REPOSITORY_AUTH)
