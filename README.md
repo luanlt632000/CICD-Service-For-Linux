@@ -88,6 +88,18 @@ root@root#
 
 <div align="center"><img src="https://i.ibb.co/VJHhb3y/install-Service.png" alt="install server" width="600"></div>
 
+### 8) Add webhook
+
+<div align="center"><img src="https://i.ibb.co/y56HwnX/image.png" alt="webhook1" width="600"></div>
+
+<div align="center"><img src="https://i.ibb.co/nmT3Hp9/image.png" alt="webhook2" width="600"></div>
+
+<div align="center"><img src="https://i.ibb.co/GJ55RDr/image.png" alt="webhook3" width="600"></div>
+
+- Target URL: URL to the API that handles requests when a event is triggered (Default: your_domain/git/gitea-webhook).
+- Trigger on: Event to trigger the webhook.
+- Branch filter: Events will be listened on the branch you choose. ( '*' :all branch)
+
 #### ** Note: **
 
 - Project gitea_CICD should be placed at the same folder level as your project

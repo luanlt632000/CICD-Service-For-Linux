@@ -38,7 +38,10 @@ function run_commands() {
     echo ""
 }
 
-result=$(spawn git pull origin $GIT_BRANCH) &&
+result=$(git pull origin $GIT_BRANCH) &&
+echo "" &&
+echo "--> git pull origin $GIT_BRANCH" &&
+echo "" &&
 echo "$result" &&
   if [[ $result == *$fe_path* ]]; then
     echo "|--------------------------------------------------------|"
