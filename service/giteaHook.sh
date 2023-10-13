@@ -38,25 +38,8 @@ function run_commands() {
     echo ""
 }
 
-result=$(expect -c "
-  set timeout 10
-  spawn git pull origin $GIT_BRANCH
-  expect {
-    \"Username for *\" {
-      send \"$username\r\"
-      exp_continue
-    }
-    \"Password for *\" {
-      sleep 2
-      send \"$password\r\r\"
-      exp_continue
-    }
-    eof
-  }
-  catch wait result
-  exit [lindex \$result 3]
-") &&
-  echo "$result" &&
+result=$(spawn git pull origin $GIT_BRANCH) &&
+echo "$result" &&
   if [[ $result == *$fe_path* ]]; then
     echo "|--------------------------------------------------------|"
     echo "|***** THERE ARE CHANGES INSIDE FOLDER $fe_path *****|"

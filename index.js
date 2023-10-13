@@ -3,14 +3,19 @@ const express = require("express");
 const app = express();
 const { exec } = require("child_process");
 const nodeMailer = require("nodemailer");
+const contentFile = fs.readFileSync(
+  "./service_run/giteaService.conf",
+  "utf8"
+);
 
+const PORT = contentFile
+    .split("\n")
+    .filter((i) => i.includes("PORT_SERVICE"))[0]
+    ?.split("=")[1]
+    .trim();
 app.use(express.json());
 
 app.post("/git/gitea-webhook", async (req, res) => {
-  const contentFile = await fs.readFileSync(
-    "./service_run/giteaService.conf",
-    "utf8"
-  );
   const checkSendMail = contentFile
     .split("\n")
     .filter((i) => i.includes("SEND_EMAIL"))[0]
@@ -75,7 +80,6 @@ app.post("/git/gitea-webhook", async (req, res) => {
   });
 });
 
-const PORT = 5000;
 app.listen(PORT, () => {
   console.log("Server is running on port ", PORT);
 });
