@@ -113,6 +113,6 @@ root@root#
       └── gitea_CICD project
   ```
 
-- Depending on the technology your project uses, the "gitea_CICD/service/giteaHook.sh" file will be custom configured to match the technology.
+- Depending on the technology your project uses, the "gitea_CICD/service_run/giteaHook.sh" file will be custom configured to match the technology.
 
 <div align="center"><h4><i>**____ Joseph Le____ **</i></h4></div>
