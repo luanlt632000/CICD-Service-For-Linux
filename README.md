@@ -75,8 +75,7 @@ root@root#
 
 - Change "IP-address" and "PORT". The "PORT" corresponds to the "PORT_SERVICE" of the "service_run/giteaService.conf" file.
 
-- Restart Nginx service
-root@root#
+- Restart Nginx service.
   ```sh
       systemctl restart nginx
   ```
