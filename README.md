@@ -73,7 +73,7 @@ root@root#
       }
   ```
 
-- Change IP address and port. The port corresponds to the port of the "service_run/giteaService.conf" file.
+- Change <IP-address> and <PORT>. The <PORT> corresponds to the <PORT_SERVICE> of the "service_run/giteaService.conf" file.
 
 ### 7) Run file "install.sh" to install service
 
