@@ -75,6 +75,11 @@ root@root#
 
 - Change "IP-address" and "PORT". The "PORT" corresponds to the "PORT_SERVICE" of the "service_run/giteaService.conf" file.
 
+- Restart Nginx service
+root@root#
+  ```sh
+      systemctl restart nginx
+  ```
 ### 7) Run file "install.sh" to install service
 
 root@root#
