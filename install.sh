@@ -13,7 +13,7 @@ if [ -d "/etc/systemd/system" ]; then
     echo -e "|***** \e[33mUPDATE ENVIRONMENT\e[0m *****|"
     echo "|------------------------------|"
     echo ""
-
+    
     find $pwd_install/service -type f -not -name "giteaService.conf" -exec cp {} $pwd_install/service_run \;
     
     sleep 2 &&
@@ -33,6 +33,7 @@ if [ -d "/etc/systemd/system" ]; then
     echo -e "* \e[32mEXEC_FILE\e[0m *" &&
     echo ""
     sleep 1 &&
+
     systemctl stop giteaHook.service
     
     input_file="$pwd_install/service_run/giteaService.conf" &&
@@ -55,8 +56,24 @@ if [ -d "/etc/systemd/system" ]; then
                 echo -e "\e[32mOK: $path exists\e[0m"
                 sleep 1
             fi
+        else
+            if [[ $line == *"REPOSITORY"* ]]; then
+                path="${line#*=}"
+                if git ls-remote -q --exit-code "$path" > /dev/null; then
+                    echo -e "\e[32mOK: Repository $path exists\e[0m"
+                    sleep 1
+                else
+                    echo ""
+                    echo -e "\e[41mError: Repository $path not exists.\e[0m"
+                    echo ""
+                    exit 1
+                fi
+            fi
         fi
     done <"$input_file" &&
+
+    
+
     cp $pwd_install/service_run/giteaHook.service /etc/systemd/system/giteaHook.service &&
     echo "" &&
     echo -e "* \e[32mCopy service file\e[0m *" &&

@@ -3,6 +3,11 @@
 # Đường dẫn tới tệp index.js
 indexjs_path=$HOOK_PATH/index.js
 project_path=$HOOK_PATH 
+REPOSITORY_AUTH="https://$GIT_USERNAME:$GIT_PASSWORD@$(echo $GIT_REPOSITORY | sed 's#https://##')"
+
+cd "$PROJECT_PATH" &&
+SET_ORIGIN=$(git remote set-url origin $REPOSITORY_AUTH)
+echo "$SET_ORIGIN"
 
 # Kiểm tra xem Node.js đã cài đặt chưa
 if ! command -v node &> /dev/null; then
@@ -34,3 +39,4 @@ if [ -f "$indexjs_path" ]; then
 else
   echo -e "\e[31mFile $indexjs_path not exists\e[0m"
 fi
+

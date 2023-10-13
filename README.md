@@ -5,10 +5,8 @@
 ### 1) Clone project to your server
 
 ```sh
-  git clone https://<USERNAME>:<PASSWORD>@gitea.nswteam.net/joseph/gitea_CICD.git
+  git clone https://gitea.nswteam.net/joseph/gitea_CICD.git
 ```
-- Get username:
-<div><img src="https://i.ibb.co/pLR2BjH/image.png" alt="getUsername" width="300"></div>
 
 ### 2) Access the folder you just cloned
 
@@ -38,6 +36,9 @@ Copy environment file
   ```
 
 ### 5) Fill in environment variables (\*)
+
+- Git username:
+<div><img src="https://i.ibb.co/pLR2BjH/image.png" alt="getUsername" width="300"></div>
 
 root@root#
   ```sh
