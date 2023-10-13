@@ -39,58 +39,66 @@ function run_commands() {
 }
 
 result=$(git pull origin $GIT_BRANCH) &&
-echo "" &&
-echo "--> git pull origin $GIT_BRANCH" &&
-echo "" &&
-echo "$result" &&
-  if [[ $result == *$fe_path* ]]; then
-    echo "|--------------------------------------------------------|"
-    echo "|***** THERE ARE CHANGES INSIDE FOLDER $fe_path *****|"
-    echo "|--------------------------------------------------------|"
-
-    echo "|---------------|"
-    echo "|*** INSTALL ***|"
-    echo "|---------------|"
-
-    cd $project/$fe_path &&
-      npm install
-
-    echo "|-------------|"
-    echo "|*** BUILD ***|"
-    echo "|-------------|"
-
-    npm run build &&
-      cp -rf $project/$fe_path/build/* $FE_ROOT_FOLDER_PATH
-  fi
-
-echo "|----------------------|"
-echo "|*** UPDATE LIBRARY ***|"
-echo "|----------------------|"
-
-input_file="$HOOK_PATH/service_run/giteaService.conf" &&
-
-  # Doc va xu ly tung dong
-  while IFS= read -r line; do
-    # Kiem tra xem dong có chua "_PATH" không
-    if [[ $line == *"_PROCESS_PATH"* && $line != "#"* && $line != *"_COMMAND"* ]]; then
-      IFS="=" read -r variable value <<<"$line"
-      variable=$(echo "$variable" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-      path=$(echo "$value" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-
-      # Loai bo khoang trong trong duong dan
-      path=$(echo "$path" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-      # Kiem tra duong dan ton tai
-      if [ ! -e "$path" ]; then
-        echo ""
-        echo -e "\e[41mError: $path not exists.\e[0m"
-        echo ""
-        exit 1 # Dung chuong trinh
-      else
-        echo -e "\e[32mProcessing in\e[0m: $path"
-        run_commands "$variable"
+if [ $? -ne 0 ]; then
+    echo "Pull failed. Please check!"
+    error_message=$(git pull origin $GIT_BRANCH 2>&1)
+    echo "Error: $error_message"
+else
+    echo "Pull success!"
+    echo "" &&
+    echo "--> git pull origin $GIT_BRANCH" &&
+    echo "" &&
+    echo "$result" &&
+      if [[ $result == *$fe_path* ]]; then
+        echo "|--------------------------------------------------------|"
+        echo "|***** THERE ARE CHANGES INSIDE FOLDER $fe_path *****|"
+        echo "|--------------------------------------------------------|"
+    
+        echo "|---------------|"
+        echo "|*** INSTALL ***|"
+        echo "|---------------|"
+    
+        cd $project/$fe_path &&
+          npm install
+    
+        echo "|-------------|"
+        echo "|*** BUILD ***|"
+        echo "|-------------|"
+    
+        npm run build &&
+          cp -rf $project/$fe_path/build/* $FE_ROOT_FOLDER_PATH
       fi
-    fi
-  done <"$input_file" &&
-echo "|------------|"
-echo "|*** DONE ***|"
-echo "|------------|"
+    
+    echo "|----------------------|"
+    echo "|*** UPDATE LIBRARY ***|"
+    echo "|----------------------|"
+    
+    input_file="$HOOK_PATH/service_run/giteaService.conf" &&
+    
+      # Doc va xu ly tung dong
+      while IFS= read -r line; do
+        # Kiem tra xem dong có chua "_PATH" không
+        if [[ $line == *"_PROCESS_PATH"* && $line != "#"* && $line != *"_COMMAND"* ]]; then
+          IFS="=" read -r variable value <<<"$line"
+          variable=$(echo "$variable" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+          path=$(echo "$value" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+    
+          # Loai bo khoang trong trong duong dan
+          path=$(echo "$path" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+          # Kiem tra duong dan ton tai
+          if [ ! -e "$path" ]; then
+            echo ""
+            echo -e "\e[41mError: $path not exists.\e[0m"
+            echo ""
+            exit 1 # Dung chuong trinh
+          else
+            echo -e "\e[32mProcessing in\e[0m: $path"
+            run_commands "$variable"
+          fi
+        fi
+      done <"$input_file" &&
+    echo "|------------|"
+    echo "|*** DONE ***|"
+    echo "|------------|"
+fi
+
