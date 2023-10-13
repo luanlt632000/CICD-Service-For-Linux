@@ -48,7 +48,7 @@ root@root#
 
 - Add thr following configuration content.
 
-  ``
+  ```
       location /git/ {
       #index index.html;
       proxy_pass http://<IP-address>:<PORT>;
@@ -71,7 +71,7 @@ root@root#
       proxy_busy_buffers_size 256k;
       proxy_temp_file_write_size 256k;
       }
-  ``
+  ```
 
 - Change IP address and port. The port corresponds to the port of the "service_run/giteaService.conf" file.
 
