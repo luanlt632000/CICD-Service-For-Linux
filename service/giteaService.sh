@@ -9,6 +9,8 @@ PASSWORD=$(echo "$GIT_PASSWORD" | sed 's/@/%40/g')
 
 REPOSITORY_AUTH="https://$USERNAME:$PASSWORD@$(echo $GIT_REPOSITORY | sed 's#https://##')"
 
+echo "$REPOSITORY_AUTH"
+
 cd "$PROJECT_PATH" &&
 git config --global --add safe.directory $PROJECT_PATH &&
 SET_ORIGIN=$(git remote set-url origin $REPOSITORY_AUTH) &&
