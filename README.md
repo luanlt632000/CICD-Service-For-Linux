@@ -90,14 +90,14 @@ root@root#
 
 ### 8) Add webhook
 
-- Open your project in Gitea:
+- Open your project on Gitea:
 - Choose "Setting"
 <div align="center"><img src="https://i.ibb.co/QHsST4D/image.png" alt="webhook1" width="800"></div>
 
 - Choose "Webhooks" and "Add Webhooks"
 <div align="center"><img src="https://i.ibb.co/bKFpvbV/image.png" alt="webhook2" width="800"></div>
 
-
+- Fill in the information
 <div align="center"><img src="https://i.ibb.co/GJ55RDr/image.png" alt="webhook3" width="800"></div>
 
 - Target URL: URL to the API that handles requests when a event is triggered (Default: your_domain/git/gitea-webhook).
