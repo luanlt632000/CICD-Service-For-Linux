@@ -43,7 +43,39 @@ root@root#
   ```sh
       nano service_run/giteaService.conf
   ```
-### 6) Run file "install.sh" to install service
+### 6) Add Nginx configuration
+- Open the Nginx configuration file.
+
+- Add thr following configuration content.
+
+  ``
+      location /git/ {
+      #index index.html;
+      proxy_pass http://<IP-address>:<PORT>;
+      proxy_http_version 1.1;
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-Server $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header Host $http_host;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "Upgrade";
+      proxy_pass_request_headers on;
+      proxy_max_temp_file_size 0;
+      proxy_connect_timeout 900;
+      proxy_send_timeout 900;
+      proxy_read_timeout 900;
+      proxy_buffer_size 128k;
+      proxy_buffers 4 256k;
+      proxy_busy_buffers_size 256k;
+      proxy_temp_file_write_size 256k;
+      }
+  ``
+
+- Change IP address and port. The port corresponds to the port of the "service_run/giteaService.conf" file.
+
+### 7) Run file "install.sh" to install service
 
 root@root#
   ```sh
