@@ -5,8 +5,10 @@
 ### 1) Clone project to your server
 
 ```sh
-  git clone https://gitea.nswteam.net/joseph/gitea_CICD.git
+  git clone https://<USERNAME>:<PASSWORD>gitea.nswteam.net/joseph/gitea_CICD.git
 ```
+- Get username:
+<div><img src="https://ibb.co/crCJShW" alt="getUsername" width="300"></div>
 
 ### 2) Access the folder you just cloned
 
