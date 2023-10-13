@@ -8,7 +8,7 @@
   git clone https://<USERNAME>:<PASSWORD>gitea.nswteam.net/joseph/gitea_CICD.git
 ```
 - Get username:
-<div><img src="https://ibb.co/crCJShW" alt="getUsername" width="300"></div>
+<div><img src="https://i.ibb.co/pLR2BjH/image.png" alt="getUsername" width="300"></div>
 
 ### 2) Access the folder you just cloned
 
