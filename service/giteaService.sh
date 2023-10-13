@@ -12,17 +12,7 @@ REPOSITORY_AUTH="https://$USERNAME:$PASSWORD@$(echo $GIT_REPOSITORY | sed 's#htt
 cd "$PROJECT_PATH" &&
 git config --global --add safe.directory $PROJECT_PATH &&
 SET_ORIGIN=$(git remote set-url origin $REPOSITORY_AUTH) &&
-
-if git ls-remote -q --exit-code "$REPOSITORY_AUTH" > /dev/null; then
-    echo -e "\e[32mOK: Repository $GIT_REPOSITORY exists\e[0m"
-    sleep 1
-else
-    echo ""
-    echo -e "\e[41mError: Repository $GIT_REPOSITORY not exists.\e[0m"
-    echo ""
-    exit 1
-fi
-
+ 
 # Kiểm tra xem Node.js đã cài đặt chưa
 if ! command -v node &> /dev/null; then
     echo -e "\e[31mNode.js is not installed.\e[0m"
@@ -42,6 +32,16 @@ if ! command -v npm &> /dev/null; then
 else
     echo -e "\e[32mnpm is installed!\e[0m" &&
     npm -v
+fi
+
+if git ls-remote -q --exit-code "$REPOSITORY_AUTH" > /dev/null; then
+    echo -e "\e[32mOK: Repository $GIT_REPOSITORY exists\e[0m"
+    sleep 1
+else
+    echo ""
+    echo -e "\e[41mError: Repository $GIT_REPOSITORY not exists.\e[0m"
+    echo ""
+    exit 1
 fi
 
 # Kiểm tra xem tệp index.js có tồn tại không
