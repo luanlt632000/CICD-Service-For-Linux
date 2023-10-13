@@ -3,11 +3,13 @@
 # Đường dẫn tới tệp index.js
 indexjs_path=$HOOK_PATH/index.js
 project_path=$HOOK_PATH
+USERNAME=$(echo "$GIT_USERNAME" | sed 's/@/%40/g')
 PASSWORD=$(echo "$GIT_PASSWORD" | sed 's/@/%40/g')
-REPOSITORY_AUTH="https://$GIT_USERNAME:$PASSWORD@$(echo $GIT_REPOSITORY | sed 's#https://##')"
+REPOSITORY_AUTH="https://$USERNAME:$PASSWORD@$(echo $GIT_REPOSITORY | sed 's#https://##')"
 
 cd "$PROJECT_PATH" &&
-SET_ORIGIN=$(git remote set-url origin $REPOSITORY_AUTH)
+git config --global --add safe.directory $PROJECT_PATH &&
+SET_ORIGIN=$(git remote set-url origin $REPOSITORY_AUTH) &&
 
 if git ls-remote -q --exit-code "$REPOSITORY_AUTH" > /dev/null; then
     echo -e "\e[32mOK: Repository $GIT_REPOSITORY exists\e[0m"
