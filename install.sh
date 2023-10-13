@@ -17,22 +17,29 @@ if [ -d "/etc/systemd/system" ]; then
     find $pwd_install/service -type f -not -name "giteaService.conf" -exec cp {} $pwd_install/service_run \;
     
     sleep 2 &&
+
     sudo sed -i "s#ExecStart=.*#ExecStart=$escaped_pwd_install/service_run/giteaService.sh#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mExecStart\e[0m *" &&
     sleep 1 &&
+
     sudo sed -i "s#WorkingDirectory=.*#WorkingDirectory=$escaped_pwd_install/service_run#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mWorkingDirectory\e[0m *" &&
     sleep 1 &&
+
     sudo sed -i "s#EnvironmentFile=.*#EnvironmentFile=$escaped_pwd_install/service_run/giteaService.conf#" $pwd_install/service_run/giteaHook.service &&
     echo -e "* \e[32mEnvironmentFile\e[0m *" &&
     sleep 1 &&
+
     sudo sed -i "s#HOOK_PATH=.*#HOOK_PATH=$escaped_pwd_install#" $pwd_install/service_run/giteaService.conf &&
     echo -e "* \e[32mHOOK_PATH\e[0m *" &&
     sleep 1 &&
+
     sudo sed -i "s#source .*#source $escaped_pwd_install/service_run/giteaService.conf#" $pwd_install/service_run/giteaHook.sh &&
     echo -e "* \e[32mEXEC_FILE\e[0m *" &&
     echo ""
     sleep 1 &&
+
+    sudo sed -i "s#source .*#source $escaped_pwd_install/service_run/giteaService.conf#" $pwd_install/service_run/giteaService.sh &&
 
     systemctl stop giteaHook.service
     

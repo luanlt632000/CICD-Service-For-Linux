@@ -1,10 +1,12 @@
 #!/bin/bash
-
+source /home/phuc/gitea_CICD/service_run/giteaService.conf
 # Đường dẫn tới tệp index.js
 indexjs_path=$HOOK_PATH/index.js
 project_path=$HOOK_PATH
-USERNAME=$(echo "$GIT_USERNAME" | sed 's/@/%40/g')
-PASSWORD=$(echo "$GIT_PASSWORD" | sed 's/@/%40/g')
+
+USERNAME=$(echo "$GIT_USERNAME" | sed 's/@/%40/g') 
+PASSWORD=$(echo "$GIT_PASSWORD" | sed 's/@/%40/g') 
+
 REPOSITORY_AUTH="https://$USERNAME:$PASSWORD@$(echo $GIT_REPOSITORY | sed 's#https://##')"
 
 cd "$PROJECT_PATH" &&

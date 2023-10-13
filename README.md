@@ -37,13 +37,11 @@ Copy environment file
 
 ### 5) Fill in environment variables (\*)
 
-- Git username:
-<div><img src="https://i.ibb.co/pLR2BjH/image.png" alt="getUsername" width="300"></div>
-
 root@root#
   ```sh
       nano service_run/giteaService.conf
   ```
+  
 ### 6) Add Nginx configuration
 - Open the Nginx configuration file.
 
