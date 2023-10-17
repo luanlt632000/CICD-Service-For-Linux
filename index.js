@@ -76,21 +76,23 @@ app.post("/git/gitea-webhook", async (req, res) => {
         console.log(`Error executing command: ${error}`);
         title += "New Git envent: " + giteaEvent;
       } else {
+        console.log(stdout);
+        if (
+          stderr.includes("Error") ||
+          stderr.includes("failed") ||
+          stdout.includes("Error") ||
+          stdout.includes("failed")
+        ) {
+          title += "New Git envent: " + giteaEvent;
+        } else {
+          title += "New Git envent: " + giteaEvent + "(success)";
+        }
         setTimeout(() => {
-          console.log(stdout);
+          
           checkStatus="ready"
           // fs.writeFileSync("./service_run/checkFile", "false");
-          if (
-            stderr.includes("Error") ||
-            stderr.includes("failed") ||
-            stdout.includes("Error") ||
-            stdout.includes("failed")
-          ) {
-            title += "New Git envent: " + giteaEvent;
-          } else {
-            title += "New Git envent: " + giteaEvent + "(success)";
-          }
-        }, 20000);
+          
+        }, 10000);
       }
 
       if (checkSendMail === "True") {
