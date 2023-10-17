@@ -1,13 +1,12 @@
 #!/bin/bash
 
 #File chua bien moi truong
-source /home/gitea_CICD/service/giteaService.conf
+source /home/joseph/tr2/gitea_CICD/service_run/giteaService.conf
+
+check="false"
 
 #URL project
 project=$PROJECT_PATH
-
-#URL folder FE
-fe_path=$(basename "$FE_PROJECT_PATH")
 
 #URL folder BE
 be_path=$BE_PROCESS_PATH
@@ -49,25 +48,59 @@ else
     echo "--> git pull origin $GIT_BRANCH" &&
     echo "" &&
     echo "$result" &&
-      if [[ $result == *$fe_path* ]]; then
-        echo "|--------------------------------------------------------|"
-        echo "|***** THERE ARE CHANGES INSIDE FOLDER $fe_path *****|"
-        echo "|--------------------------------------------------------|"
-    
-        echo "|---------------|"
-        echo "|*** INSTALL ***|"
-        echo "|---------------|"
-    
-        cd $project/$fe_path &&
-          npm install
-    
-        echo "|-------------|"
-        echo "|*** BUILD ***|"
-        echo "|-------------|"
-    
-        npm run build &&
-          cp -rf $project/$fe_path/build/* $FE_ROOT_FOLDER_PATH
+    output=$(echo "$result" | grep "|" | awk -F "|" '{gsub(/ /, "", $1); print $1}') &&
+    while IFS= read -r line; do
+      if [[ $line != "" && $(find "$project" | grep "$line" | grep -q "$fe"; echo $?) -eq 0 ]]; then
+        echo "$line ton tai" &&
+        check="true"
+      else
+        echo "$line ko ton tai"
       fi
+    done <<< "$output"
+    
+#    process_ids=$(ps aux | grep "$FE_PROJECT_PATH" | grep "build" | grep -v grep | awk '{print $2}') &&
+#    
+#    if [ -n "$process_ids" ]; then
+#    
+#      echo "Kill process build on $FE_PROJECT_PATH..."
+#    
+#      for process_id in $process_ids; do
+#        kill "$process_id"
+#      done
+#    
+#    fi
+#    
+#    process_sh_ids=$(ps aux | grep "service_run/giteaHook.sh" | grep -v grep | awk '{print $2}') &&
+#    
+#    if [ -n "$process_sh_ids" ]; then
+#    
+#      echo "Kill process build on process_sh_ids..."
+#    
+#      for process_sh_id in $process_sh_ids; do
+#        kill "$process_sh_id"
+#      done
+#    
+#    fi
+    
+    if [[ $check == "true" ]]; then
+      echo "|--------------------------------------------------------|"
+      echo "|***** THERE ARE CHANGES INSIDE FOLDER $FE_PROJECT_PATH *****|"
+      echo "|--------------------------------------------------------|"
+  
+      echo "|---------------|"
+      echo "|*** INSTALL ***|"
+      echo "|---------------|"
+  
+      cd $FE_PROJECT_PATH &&
+        npm install
+  
+      echo "|-------------|"
+      echo "|*** BUILD ***|"
+      echo "|-------------|"
+  
+      npm run build &&
+        cp -rf $FE_PROJECT_PATH/build/* $FE_ROOT_FOLDER_PATH
+fi
     
     echo "|----------------------|"
     echo "|*** UPDATE LIBRARY ***|"
