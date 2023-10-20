@@ -50,7 +50,7 @@ else
     echo "$result" &&
     output=$(echo "$result" | grep "|" | awk -F "|" '{gsub(/ /, "", $1); print $1}') &&
     while IFS= read -r line; do
-      if [[ $line != "" && $(find "$project" | grep "$line" | grep -q "$fe"; echo $?) -eq 0 ]]; then
+      if [[ $line != "" && $(find "$project" | grep "$line" | grep -q "$FE_PROJECT_PATH"; echo $?) -eq 0 ]]; then
         echo "$line ton tai" &&
         check="true"
       else
