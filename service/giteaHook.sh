@@ -92,7 +92,7 @@ else
       echo "|---------------|"
   
       cd $FE_PROJECT_PATH &&
-        npm install
+        npm install -f
   
       echo "|-------------|"
       echo "|*** BUILD ***|"
