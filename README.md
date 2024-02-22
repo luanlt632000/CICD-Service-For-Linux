@@ -116,4 +116,4 @@ root@root#
 - Depending on the technology your project uses, the "gitea_CICD/service_run/giteaHook.sh" file will be custom configured to match the technology.
 
 ## Authors
-(@JosephLe)[https://github.com/luanlt632000]
+[@JosephLe](https://github.com/luanlt632000)
