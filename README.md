@@ -1,7 +1,8 @@
-# gitea_CICD
+# CICD Service Linux
 
 <div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="NodeJS" width="300"></div>
 
+A service implemented on linux to listen to events from Git's webhook. Automatically execute project updates on the server environment.
 ### 1) Clone project to your server
 
 ```sh
@@ -114,4 +115,5 @@ root@root#
 
 - Depending on the technology your project uses, the "gitea_CICD/service_run/giteaHook.sh" file will be custom configured to match the technology.
 
-<div align="center"><h4><i>**____ Joseph Le____ **</i></h4></div>
+## Authors
+(@JosephLe)[https://github.com/luanlt632000]
